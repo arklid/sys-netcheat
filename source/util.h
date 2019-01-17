@@ -6,3 +6,4 @@ extern int sock;
 
 void fatalLater(Result err);
 int setupServerSocket();
+void print_hex(u64 addr, u32 size);

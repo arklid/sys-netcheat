@@ -205,6 +205,18 @@ int argmain(int argc, char **argv)
         return 0;
     }
 
+    if (!strcmp(argv[0], "peek"))
+    {
+        if (argc != 3)
+            goto help;
+
+        u64 addr = strtoull(argv[1], NULL, 16);
+        u32 size = strtoull(argv[2], NULL, 10);
+        print_hex(addr, size);
+        
+        return 0;
+    }
+
     if (!strcmp(argv[0], "poke"))
     {
         if (argc != 4)
@@ -274,6 +286,7 @@ help:
            "    help                                 | Shows this text\r\n"
            "    ssearch u8/u16/u32/u64 value         | Starts a search with 'value' as the starting-value\r\n"
            "    csearch value                        | Searches the hits of the last search for the new value\r\n"
+           "    peek address length                  | Prints memory at a specific address and length\r\n"
            "    poke address u8/u16/u32/u64 value    | Sets the memory at address to value\r\n"
            "    afreeze address u8/u16/u32/u64 value | Freezes the memory at address to value\r\n"
            "    lfreeze                              | Lists all frozen values\r\n"
